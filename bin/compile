@@ -9,5 +9,10 @@ BUILD_DIR=$1
 VENDOR_DIR="vendor"
 which python2.7
 
-echo "-----> Add libncurses.so.5 to path"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu
+#echo "-----> Add libncurses.so.5 to path"
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu
+
+echo "adding libncurses.so.5 to LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/libncurses.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu"' >> $PROFILE_PATH
