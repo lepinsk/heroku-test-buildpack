@@ -1,0 +1,13 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Set Python2.7 to default"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+which python2.7
+
+echo "-----> Add libncurses.so.5 to path"
+echo "$BUILD_DIR"
