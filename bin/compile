@@ -4,10 +4,14 @@ indent() {
   sed -u 's/^/       /'
 }
 
-echo "-----> Set Python2.7 to default"
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
-which python2.7
+echo "Setting Python2.7 to default" | indent
+PROFILE_PATH_PYTHON="$BUILD_DIR/.profile.d/defaultpython.sh"
+mkdir -p $(dirname $PROFILE_PATH_PYTHON)
+echo 'update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10' >> $PROFILE_PATH_PYTHON
+
+#update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10
 
 #echo "-----> Add libncurses.so.5 to path"
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu
