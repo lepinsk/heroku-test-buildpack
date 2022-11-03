@@ -9,7 +9,7 @@ VENDOR_DIR="vendor"
 echo "Setting Python2.7 to default" | indent
 PROFILE_PATH_PYTHON="$BUILD_DIR/.profile.d/defaultpython.sh"
 mkdir -p $(dirname $PROFILE_PATH_PYTHON)
-echo 'update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10' >> $PROFILE_PATH_PYTHON
+echo 'sudo update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10' >> $PROFILE_PATH_PYTHON
 
 #update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10
 
