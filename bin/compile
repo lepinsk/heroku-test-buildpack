@@ -10,4 +10,4 @@ VENDOR_DIR="vendor"
 which python2.7
 
 echo "-----> Add libncurses.so.5 to path"
-echo "$BUILD_DIR"
+export PATH=$PATH:/.apt/lib/x86_64-linux-gnu
