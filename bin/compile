@@ -15,8 +15,6 @@ echo "Creating python .profile.d script"
 mkdir -p -v $(dirname $PROFILED_PATH_PYTHON)
 echo 'export PATH="$HOME/vendor/python-bin:$PATH"' >> $PROFILED_PATH_PYTHON
 echo "Created new profile.d script at $PROFILED_PATH_PYTHON" | indent
-echo "Contents of $PROFILED_PATH_PYTHON"
-cat $PROFILED_PATH_PYTHON
 
 echo "Creating python symlink"
 PYTHON_SYMLINK_LOCATION="$BUILD_DIR/vendor/python-bin/python"
@@ -24,8 +22,8 @@ mkdir -p -v $(dirname $PYTHON_SYMLINK_LOCATION)
 echo "Creating "
 echo 'ln -s $HOME/.apt/usr/bin/python2.7 $PYTHON_SYMLINK_LOCATION' >> $PYTHON_SYMLINK_LOCATION
 echo "Created python symlink at $PYTHON_SYMLINK_LOCATION" | indent
-echo "Contents of $PYTHON_SYMLINK_LOCATION"
-cat $PYTHON_SYMLINK_LOCATION
+echo "chmod'ing $PYTHON_SYMLINK_LOCATION"
+chmod +x $PYTHON_SYMLINK_LOCATION
 
 echo "Adding libncurses.so.5 to LIBRARY_PATH" | indent
 PROFILE_PATH_LIBNCURSES="$BUILD_DIR/.profile.d/libncurses.sh"

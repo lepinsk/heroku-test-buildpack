@@ -1,4 +1,9 @@
 #!/bin/sh
 
-# this pack is valid for all apps
-exit 0
+if [ -x "$(command -v python2.7)" ]; then
+	echo "Python 2.7 is installed; running"
+	exit 0
+else 
+	echo "Python 2.7 is not installed; not running"
+	exit 1
+fi
