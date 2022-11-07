@@ -19,7 +19,7 @@ echo "Contents of $PROFILED_PATH_PYTHON"
 cat $PROFILED_PATH_PYTHON
 
 echo "Creating python symlink"
-PYTHON_SYMLINK_LOCATION="$HOME/vendor/python-bin/python"
+PYTHON_SYMLINK_LOCATION="$BUILD_DIR/vendor/python-bin/python"
 mkdir -p -v $(dirname $PYTHON_SYMLINK_LOCATION)
 echo "Creating "
 echo 'ln -s $HOME/.apt/usr/bin/python2.7 $PYTHON_SYMLINK_LOCATION' >> $PYTHON_SYMLINK_LOCATION
