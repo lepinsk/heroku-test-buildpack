@@ -6,17 +6,18 @@ indent() {
 
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
+
+echo "-----> lepinsk/heroku-test-buildpack"
+
 echo "Setting Python2.7 to default" | indent
 PROFILE_PATH_PYTHON="$BUILD_DIR/.profile.d/defaultpython.sh"
+PYTHON_SYMLINK_LOCATION="$HOME/vendor/python-bin/python"
 mkdir -p $(dirname $PROFILE_PATH_PYTHON)
-echo 'sudo update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10' >> $PROFILE_PATH_PYTHON
+mkdir -p $(dirname $PYTHON_SYMLINK_LOCATION)
+echo 'ln -s $HOME/.apt/usr/bin/python2.7 ./python' >> $PYTHON_SYMLINK_LOCATION
+echo 'export PATH="$HOME/vendor/python-bin:$PATH"' >> $PROFILE_PATH_PYTHON
 
-#update-alternatives --install /usr/bin/python python /app/.apt/usr/bin/python2.7 10
-
-#echo "-----> Add libncurses.so.5 to path"
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu
-
-echo "adding libncurses.so.5 to LIBRARY_PATH" | indent
-PROFILE_PATH="$BUILD_DIR/.profile.d/libncurses.sh"
-mkdir -p $(dirname $PROFILE_PATH)
-echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/.apt/lib/x86_64-linux-gnu"' >> $PROFILE_PATH
+echo "Adding libncurses.so.5 to LIBRARY_PATH" | indent
+PROFILE_PATH_LIBNCURSES="$BUILD_DIR/.profile.d/libncurses.sh"
+mkdir -p $(dirname $PROFILE_PATH_LIBNCURSES)
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.apt/lib/x86_64-linux-gnu"' >> $PROFILE_PATH_LIBNCURSES
