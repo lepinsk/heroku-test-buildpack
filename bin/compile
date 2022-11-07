@@ -11,11 +11,14 @@ echo "-----> lepinsk/heroku-test-buildpack"
 
 echo "Setting Python2.7 to default" | indent
 PROFILE_PATH_PYTHON="$BUILD_DIR/.profile.d/defaultpython.sh"
-PYTHON_SYMLINK_LOCATION="$HOME/vendor/python-bin/python"
-mkdir -p $(dirname $PROFILE_PATH_PYTHON)
-mkdir -p $(dirname $PYTHON_SYMLINK_LOCATION)
-echo 'ln -s $HOME/.apt/usr/bin/python2.7 ./python' >> $PYTHON_SYMLINK_LOCATION
+echo "Creating python .profile.d script"
+mkdir -p -v $(dirname $PROFILE_PATH_PYTHON)
 echo 'export PATH="$HOME/vendor/python-bin:$PATH"' >> $PROFILE_PATH_PYTHON
+
+echo "Creating python symlink"
+PYTHON_SYMLINK_LOCATION="$HOME/vendor/python-bin/python"
+mkdir -p -v $(dirname $PYTHON_SYMLINK_LOCATION)
+echo 'ln -s $HOME/.apt/usr/bin/python2.7 $PYTHON_SYMLINK_LOCATION' >> $PYTHON_SYMLINK_LOCATION
 
 echo "Adding libncurses.so.5 to LIBRARY_PATH" | indent
 PROFILE_PATH_LIBNCURSES="$BUILD_DIR/.profile.d/libncurses.sh"
